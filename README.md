@@ -42,7 +42,12 @@ The application will be available at `http://localhost:3000`.
 
 - React
 - CSS
+- Material UI
 
-## Contributing
 
-If you would like to contribute to this project, please fork the repository and submit a pull request.
+## Development steps
+- Created the app (initial commit)
+- Added materialUI 
+` npm install @mui/material @mui/icons-material @emotion/react @emotion/styled @fontsource/roboto `
+-- Imported roboto font, added App.js, modified index.js, upgraded app version from react 17 to 18 in order to get support for react-dom client
+
