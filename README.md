@@ -51,3 +51,20 @@ The application will be available at `http://localhost:3000`.
 ` npm install @mui/material @mui/icons-material @emotion/react @emotion/styled @fontsource/roboto `
 -- Imported roboto font, added App.js, modified index.js, upgraded app version from react 17 to 18 in order to get support for react-dom client
 
+--
+
+### Set up Google OAuth Credentials
+Go to the Google Cloud Console
+Create a new project or select an existing one
+Navigate to "APIs & Services" > "Credentials"
+Click "Create Credentials" > "OAuth client ID"
+Configure the OAuth consent screen if prompted
+Select "Web application" as application type
+Add authorized JavaScript origins (e.g., http://localhost:3000)
+Add authorized redirect URIs (e.g., http://localhost:3000)
+Note your Client ID and Client Secret
+
+Install required package:
+npm install @react-oauth/google jwt-decode
+
+Note that I added a .env file to contain the secret, actually just a dummy value in .env, with the real value in .env.local - hidden from source control
