@@ -1,27 +1,79 @@
-# dependencies
-/node_modules
-/.pnp
-.pnp.js
+# React / Node.js
+/client/node_modules
+/client/build
+/client/coverage
+/client/.DS_Store
+/client/.env.local
+/client/.env.development.local
+/client/.env.test.local
+/client/.env.production.local
+/client/npm-debug.log*
+/client/yarn-debug.log*
+/client/yarn-error.log*
 
-# testing
-/coverage
+# .NET Core
+/server/**/bin/
+/server/**/obj/
+/server/**/*.user
+/server/**/*.userosscache
+/server/**/*.sln.docstates
+/server/.vs/
+/server/**/*.suo
+/server/**/*.user
+/server/**/*.userprefs
+/server/**/[Dd]ebug/
+/server/**/[Dd]ebugPublic/
+/server/**/[Rr]elease/
+/server/**/[Rr]eleases/
+/server/**/x64/
+/server/**/x86/
+/server/**/build/
+/server/**/bld/
+/server/**/[Bb]in/
+/server/**/[Oo]bj/
+/server/**/[Ll]og/
+/server/**/[Ll]ogs/
+/server/**/.tools/
+/server/**/nupkg/
+/server/**/*.nupkg
+/server/**/*.snupkg
+/server/**/_ReSharper*/
+/server/**/*.ReSharper*
+/server/**/_TeamCity*
+/server/**/*.dotCover
+/server/**/*.coverage
+/server/**/*.coveragexml
 
-# production
-/build
+# Visual Studio / VS Code
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
-# misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# IDE files
+# JetBrains Rider
 .idea/
-.vscode/
-*.swp
-*.swo
+*.sln.iml
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment configuration
+.env
+appsettings.Development.json
+appsettings.Production.json
+appsettings.Staging.json
