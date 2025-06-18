@@ -18,6 +18,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';  // New way for v4.0.0+
 import { useAuth } from './contexts/AuthContext';
+import WeatherForecast from './components/WeatherForecast';
 
 function App() {
     const { user, login, logout } = useAuth();
@@ -80,17 +81,18 @@ function App() {
                     )}
                 </Toolbar>
             </AppBar>
-
+            
             <Container maxWidth="lg" sx={{ mt: 4 }}>
                 <Box sx={{ my: 4 }}>
                     <Typography variant="h4" component="h1" gutterBottom>
                         Welcome{user ? `, ${user.given_name}` : ' to My React App'}
                     </Typography>
-
-                    <Typography variant="body1" paragraph>
-                        This is a simple React application using Material UI components with Google SSO.
-                    </Typography>
-
+                    
+                    {/* Add the WeatherForecast component */}
+                    <Box mt={4}>
+                        <WeatherForecast />
+                    </Box>
+                    
                     <Grid container spacing={3}>
                         <Grid item xs={12} md={6}>
                             <Card>
