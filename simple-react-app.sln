@@ -1,0 +1,36 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "server", "server", "{DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleReactApp.Api", "server\SimpleReactApp.Api\SimpleReactApp.Api.csproj", "{1427C0F9-2B78-5AAB-B19A-E90716D48E30}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleReactApp.Domain", "server\SimpleReactApp.Domain\SimpleReactApp.Domain.csproj", "{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1427C0F9-2B78-5AAB-B19A-E90716D48E30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1427C0F9-2B78-5AAB-B19A-E90716D48E30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1427C0F9-2B78-5AAB-B19A-E90716D48E30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1427C0F9-2B78-5AAB-B19A-E90716D48E30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1427C0F9-2B78-5AAB-B19A-E90716D48E30} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
+		{6D7F0E57-F1D9-0D9A-6D4C-7B9E626DB059} = {DAD03CFC-D5FA-AC94-41C7-9ABAB326F09E}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2445419-4FF7-4D89-BC6D-2ABAF187B6D9}
+	EndGlobalSection
+EndGlobal
