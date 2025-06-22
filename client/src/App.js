@@ -69,9 +69,15 @@ function App() {
                         </>
                     ) : (
                         <GoogleLogin
-                            onSuccess={(credentialResponse) => {
+                            onSuccess={async (credentialResponse) => {
                                 const decoded = jwtDecode(credentialResponse.credential);
-                                login(decoded);
+                                const success = await login(decoded, credentialResponse.credential);
+                                
+                                if (!success) {
+                                    // Handle failed backend authentication
+                                    console.error("Backend authentication failed");
+                                    // Optionally show error message to user
+                                }
                             }}
                             onError={() => {
                                 console.log('Login Failed');

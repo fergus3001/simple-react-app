@@ -48,6 +48,7 @@ namespace SimpleReactApp.Api.Controllers
             try
             {
                 var clientId = _configuration["Authentication:Google:ClientId"];
+                
                 // uncomment these lines if you want to add settings: 
                 var validationSettings = new GoogleJsonWebSignature.ValidationSettings
                 {

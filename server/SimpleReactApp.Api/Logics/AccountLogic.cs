@@ -25,19 +25,31 @@ namespace SimpleReactApp.Api.Logics
         // this is just meant to check the user is allowed and assign claims
         public async Task<(bool IsAuthorized, TokenResponseModel Token)> AuthorizeGoogleUser(string userEmail)
         {
-            var userRoles = new List<UserRoles>();
-            if (!UserEmailIsAllowed(userEmail))
+            var userAccessResult = UserEmailIsAllowed(userEmail);
+            if (! userAccessResult.isAllowed)
                 return (false, null);
             var token = new TokenResponseModel
             {
-                JwtToken = GetJWTAuthKey(userRoles)
+                JwtToken = GetJWTAuthKey(userAccessResult.roles)
             };
             return (true, token);
         }
 
-        private bool UserEmailIsAllowed(string email)
+        private ( bool isAllowed, List<UserRoles> roles ) UserEmailIsAllowed(string email)
         {
-            return true;
+            var user = _authContext.User.FirstOrDefault(_ => _.EmailAddress == email);
+            if (user == null)
+            {
+                return (false, new List<UserRoles>());
+            }
+
+            var roles = _authContext.UserRoles.Where(_ => _.UserId == user.UserId).ToList();
+            if (roles.Count == 0)
+            {
+                return (false, new List<UserRoles>());
+            }
+
+            return (true, roles);
         }
 
         public async Task<TokenResponseModel> RegisterGoogleUser(RegisterGoogleUserModel googleUserModel)

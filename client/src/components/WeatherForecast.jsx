@@ -13,28 +13,68 @@ import {
 import WbSunnyIcon from '@mui/icons-material/WbSunny';
 import ThunderstormIcon from '@mui/icons-material/Thunderstorm';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import { useAuth } from '../contexts/AuthContext';
 import { weatherService } from '../services/api';
 
 function WeatherForecast() {
+  const { token } = useAuth();
   const [forecasts, setForecasts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
+  // Reset state when token changes
   useEffect(() => {
+    //console.log("Token changed:", token);
+    // Reset state when token changes
+    setLoading(true);
+    setError(null);
+    
+    // Clear forecasts on logout
+    if (!token) {
+      setForecasts([]);
+    }
+  }, [token]);
+  
+  // Separate effect for data fetching
+  useEffect(() => {
+    let isMounted = true;
+    
     const fetchWeatherData = async () => {
+      // Skip fetch if not authenticated
+      if (!token) {
+        if (isMounted) {
+          setError('Authentication required');
+          setLoading(false);
+        }
+        return;
+      }
+      
       try {
         const response = await weatherService.getForecasts();
-        setForecasts(response.data);
-        setLoading(false);
+        if (isMounted) {
+          setForecasts(response.data);
+          setLoading(false);
+        }
       } catch (err) {
         console.error('Error fetching weather data:', err);
-        setError('Failed to load weather data');
-        setLoading(false);
+        if (isMounted) {
+          if (err.response && err.response.status === 401) {
+            setError('Unauthorized: Please log in');
+          } else {
+            setError('Failed to load weather data');
+          }
+          setLoading(false);
+        }
       }
     };
 
     fetchWeatherData();
-  }, []);
+    
+    // Clean up function
+    return () => {
+      isMounted = false;
+    };
+  }, [token]); // Depend on token to refetch when it changes
 
   // Choose icon based on temperature
   const getWeatherIcon = (temperatureC) => {
@@ -61,6 +101,21 @@ function WeatherForecast() {
     );
   }
 
+  if (!token) {
+    return (
+      <Card>
+        <CardContent>
+          <Typography variant="h5" component="h2" gutterBottom>
+            Weather Forecast
+          </Typography>
+          <Typography color="error" paragraph>
+            Please login to view weather forecasts
+          </Typography>
+        </CardContent>
+      </Card>
+    );
+  }
+  
   return (
     <Card>
       <CardContent>

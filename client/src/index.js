@@ -11,7 +11,6 @@ import theme from './theme';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { AuthProvider } from './contexts/AuthContext';
 
-// Replace with your actual Google Client ID
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 
 ReactDOM.render(

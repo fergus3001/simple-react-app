@@ -26,13 +26,22 @@ builder.Services.AddSingleton<MockAuthContext, MockAuthContext>();
 // add CORS
 builder.Services.AddCors(options =>
 {
+    // options.AddPolicy(name: "corsService",
+    //   builder =>
+    //   {
+    //       builder.AllowAnyOrigin();
+    //       builder.AllowAnyHeader();
+    //       builder.AllowAnyMethod();
+    //       builder.AllowCredentials();
+    //   });
     options.AddPolicy(name: "corsService",
       builder =>
       {
-          builder.AllowAnyOrigin();
-          builder.AllowAnyHeader();
-          builder.AllowAnyMethod();
-      });
+          builder.WithOrigins("http://localhost:3000")  // Specify React origin
+                 .AllowAnyMethod()
+                 .AllowAnyHeader()
+                 .AllowCredentials();  // Important for cookies/auth
+      });    
 });
 
 // setup authentication
@@ -56,12 +65,13 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
-app.UseAuthentication(); // authentication must go before authorization here..
+
+// Add CORS before authentication/authorization
+app.UseCors("corsService");
+
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();
-
-// more CORS
-app.UseCors("corsService");
 
 app.Run();
